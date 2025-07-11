@@ -8,4 +8,8 @@ pipeline {
     }
 
   }
+  environment {
+    a = '123'
+    b = '456'
+  }
 }
