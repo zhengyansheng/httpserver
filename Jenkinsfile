@@ -90,7 +90,6 @@ pipeline {
     }
 
    post {
-        // currentBuild 全局变量
 
         always {
             script {
@@ -112,17 +111,14 @@ pipeline {
         }
 
         success {
-            currentBuild.description += "\n success"
             echo '✅ Pipeline 执行成功！'
         }
 
         failure {
-            currentBuild.description += "\n failure"
             echo '❌ Pipeline 执行失败，请检查日志。'
         }
 
         aborted {
-            currentBuild.description += "\n aborted "
             echo '❌ Pipeline 执行终止，请检查日志。'
         }
    }
