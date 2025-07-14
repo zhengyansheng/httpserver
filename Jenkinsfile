@@ -25,5 +25,19 @@ pipeline {
                 }
             }
         }
+
+        stage('检出代码/ checkout code') {
+            steps {
+                echo '检出代码'
+                
+                script {
+                
+                    println("checkout code")
+                    
+                }
+            }
+        }
+        
+        
     }
 }
