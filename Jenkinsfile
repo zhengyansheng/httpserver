@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('初始化/initialization') {
             steps {
                 echo 'Hello World'
                 
