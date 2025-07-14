@@ -3,15 +3,15 @@ pipeline {
     agent any
 
     stages {
-        stage('初始化/initialization') {
+        stage('初始化/ initialization') {
             steps {
-                echo 'Hello World'
+                echo '初始化'
                 
                 script {
                 
-                    println("hello world")
-                    println(currentBuild.displayName)
-                    println(currentBuild)
+                    //println("hello world")
+                    //println(currentBuild.displayName)
+                    //println(currentBuild)
                     
                     // 定义日期时间格式：年-月-日 时:分:秒
                     def dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
