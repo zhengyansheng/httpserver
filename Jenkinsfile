@@ -12,6 +12,16 @@ def serviceMap = [
     )
 ]
 
+/**
+ * 通过服务名称获取代码类型和仓库地址
+ * @param serviceName 服务名称
+ * @return Map [codeType: 类型, repoUrl: 仓库地址]（如果服务不存在返回 null）
+ */
+def getServiceInfo(String serviceName) {
+    return serviceMap[serviceName]
+}
+
+
 // setBuildDisplayName 设置构建显示的名称
 def setBuildDisplayName() {
     // 定义日期时间格式：年-月-日 时:分:秒
