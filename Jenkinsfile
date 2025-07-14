@@ -8,8 +8,15 @@ def setBuildDisplayName() {
     currentBuild.description = "时间: $currentDateTime" + "\n" + "分支: xx" + "\n" + "环境: xx" + "\n" + "用户: ${env.EXECUTE_JOB_USER_ID}"
 }
 
-def checkoutCode() {
-
+// CheckoutCode 克隆代码
+def checkoutCode(gitUrl, branch) {
+    // Clean workspace before checking out code
+    deleteDir()
+    checkout scmGit(
+        // userRemoteConfigs: [[credentialsId:  'git_pull_secret', url: gitUrl]],
+        userRemoteConfigs: [[url: gitUrl]],
+        branches: [[name: branch]]
+    )
 }
 
 
@@ -19,6 +26,14 @@ pipeline {
 
     // 执行的节点
     agent any
+
+    // 参数
+    parameters {
+        choice(name: 'action', choices: ['构建', '打包', '部署', '回滚'], description: '操作的指令')
+        choice(name: 'branch', choices: ['dev', 'qa', 'uat', 'master', 'main'], description: '分支或Tag名称')
+//         choice(name: 'env', choices: ['dev', 'test', 'test2', 'test3', 'uat', 'prod'], description: '运行的环境')
+//         choice(name: 'codeType', choices: ['java', 'nodejs', 'common', 'go', 'python'], description: '代码类型')
+    }
 
     // 阶段
     stages {
@@ -48,6 +63,7 @@ pipeline {
                 script {
                 
                     println("checkout code")
+                    checkoutCode()
                     
                 }
             }
