@@ -7,6 +7,14 @@ pipeline {
             steps {
                 echo '初始化'
                 
+                wrap([$class: 'BuildUser']) {
+                    script {
+                        echo "触发用户ID: ${env.BUILD_USER_ID}"      // 如 'admin'
+                        echo "触发用户名: ${env.BUILD_USER_NAME}"    // 如 'Admin User'
+                        echo "触发用户邮箱: ${env.BUILD_USER_EMAIL}" // 如 'admin@example.com'
+                    }
+                }
+                
                 script {
                 
                     //println("hello world")
@@ -21,6 +29,10 @@ pipeline {
                     def description = currentBuild.displayName + "\n" + "$currentDateTime"
                     //currentBuild.displayName = displayName
                     currentBuild.description = "时间: $currentDateTime" + "\n" + "分支: xx" + "\n" + "环境: xx"
+
+                    print("${env.CHANGE_AUTHOR}")
+                    print("${env.CHANGE_AUTHOR_DISPLAY_NAME}")
+                    print("${env.CHANGE_AUTHOR_EMAIL}")
                     
                 }
             }
