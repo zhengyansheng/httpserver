@@ -1,4 +1,17 @@
 
+
+class ServiceInfo {
+    String codeType
+    String repoUrl
+}
+
+def serviceMap = [
+    "shark": new ServiceInfo(
+        codeType: "go",
+        repoUrl: "https://github.com/zhengyansheng/httpserver2.git"
+    )
+]
+
 // setBuildDisplayName 设置构建显示的名称
 def setBuildDisplayName() {
     // 定义日期时间格式：年-月-日 时:分:秒
@@ -61,7 +74,16 @@ pipeline {
                 echo '检出代码'
                 
                 script {
-                
+
+                    // 调用函数获取服务信息
+                    def info = getServiceInfo("shark")
+                    if (info) {
+                        println("代码类型: ${info.codeType}")
+                        println("仓库地址: ${info.repoUrl}")
+                    } else {
+                        println("服务不存在")
+                    }
+
                     println("checkout code")
 //                     checkoutCode()
                     
