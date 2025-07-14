@@ -1,4 +1,13 @@
 
+def setBuildDisplayName() {
+    // 定义日期时间格式：年-月-日 时:分:秒
+    def dateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    def currentDateTime = dateFormat.format(new Date())
+    def description = currentBuild.displayName + "\n" + "$currentDateTime"
+    currentBuild.description = "时间: $currentDateTime" + "\n" + "分支: xx" + "\n" + "环境: xx"
+}
+
+
 pipeline {
     agent any
 
