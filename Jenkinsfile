@@ -20,7 +20,7 @@ pipeline {
                     //println("$currentDateTime")
                     def description = currentBuild.displayName + "\n" + "$currentDateTime"
                     //currentBuild.displayName = displayName
-                    currentBuild.description = "$currentDateTime" + "\n" + "分支: xx" + "\n" + "环境: xx"
+                    currentBuild.description = "时间: $currentDateTime" + "\n" + "分支: xx" + "\n" + "环境: xx"
                     
                 }
             }
