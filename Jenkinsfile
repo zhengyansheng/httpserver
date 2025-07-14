@@ -63,7 +63,7 @@ pipeline {
                 script {
                 
                     println("checkout code")
-                    checkoutCode()
+//                     checkoutCode()
                     
                 }
             }
